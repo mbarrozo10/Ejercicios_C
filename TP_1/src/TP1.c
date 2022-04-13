@@ -1,5 +1,5 @@
 /*
-TP N°1 MATIAS BARROZO 1F
+TP NÂ°1 MATIAS BARROZO 1F
  */
 
 #include <stdio.h>
@@ -10,7 +10,7 @@ TP N°1 MATIAS BARROZO 1F
 int main(void) {
 	setbuf(stdout, NULL);
 	int seleccion, subseleccion, comprobacion;
-	float kilometraje, aerolineas, latam, precioAerolineas[4], precioLatam[4], descuentoDebito, interesCredito, bitcoin, diferencia ;
+	float kilometraje, aerolineas, latam, precioAerolineas[4], precioLatam[4], descuentoDebito, interesCredito, bitcoin, diferencia, kilometrajeF, aerolineasF, latamF ;
 	kilometraje=0;
 	aerolineas=0;
 	latam=0;
@@ -69,15 +69,15 @@ int main(void) {
 					break;
 				}
 			case 5:
-				kilometraje=7090;
-				aerolineas=162965;
-				latam=159339;
-				calcularDescuentos(descuentoDebito,aerolineas,precioAerolineas, interesCredito, bitcoin, kilometraje);
-				calcularDescuentos(descuentoDebito,latam,precioLatam, interesCredito, bitcoin, kilometraje);
-				printf ("\nKilomtros Ingresados: %fkm\n",kilometraje);
-				mostrarResultados(precioAerolineas, aerolineas, "Aerolineas");
-				mostrarResultados(precioLatam,latam, "Latam");
-				diferencia=calcularDiferencia(aerolineas,latam);
+				kilometrajeF=7090;
+				aerolineasF=162965;
+				latamF=159339;
+				calcularDescuentos(descuentoDebito,aerolineasF,precioAerolineas, interesCredito, bitcoin, kilometrajeF);
+				calcularDescuentos(descuentoDebito,latamF,precioLatam, interesCredito, bitcoin, kilometrajeF);
+				printf ("\nKilomtros Ingresados: %fkm\n",kilometrajeF);
+				mostrarResultados(precioAerolineas, aerolineasF, "Aerolineas");
+				mostrarResultados(precioLatam,latamF, "Latam");
+				diferencia=calcularDiferencia(aerolineasF,latamF);
 				printf("\nLa diferencia de precio es: %f\n$",diferencia);
 				system("pause");
 				system("cls");

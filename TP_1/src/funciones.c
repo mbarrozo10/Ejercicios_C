@@ -7,7 +7,7 @@ float ingresarNumeros(char text[]){ //se usa para ingresar numeros
 	float numero;
 	printf("Ingrese el %s: ",text);
 	scanf("%f",&numero);
-	while (numero<0){
+	while (numero<=0){
 		printf("Error, el %s no puede ser menor a 0, ingrese nuevamente: ",text);
 		scanf("%f",&numero);
 	}

@@ -7,7 +7,7 @@ float ingresarNumeros(char text[]){ //se usa para ingresar numeros
 	float numero;
 	printf("Ingrese el %s: ",text);
 	scanf("%f",&numero);
-	while (numero<=0){
+	while (numero<0){
 		printf("Error, el %s no puede ser menor a 0, ingrese nuevamente: ",text);
 		scanf("%f",&numero);
 	}
@@ -53,9 +53,9 @@ void calcularDescuentos(float descuento, float precio, float vector[4], float in
 }
 void mostrarResultados (float vector[], float precio, char text[]){ //se usa para mostrar los resultados
 	printf("\n%s: %f\na)Precio con tarjeta de debito: %f$\n",text,precio ,vector[0]);
-	printf("b)Precio con tarjeta de credito: %f\n$",vector[1]);
-	printf("c)Precio en bitcoin: %f\n$",vector[2]);
-	printf("b)Precio por kilometro: %f\n$",vector[3]);
+	printf("b)Precio con tarjeta de credito: %f$\n",vector[1]);
+	printf("c)Precio en bitcoin: %f$\n",vector[2]);
+	printf("b)Precio por kilometro: %f$\n",vector[3]);
 }
 
 float calcularDiferencia (float primerNumero, float segundoNumero){ //se usa para calcular la diferencia

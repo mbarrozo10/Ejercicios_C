@@ -60,7 +60,7 @@ int main(void) {
 					mostrarResultados(precioAerolineas, aerolineas, "Aerolineas");
 					mostrarResultados(precioLatam,latam, "Latam");
 					diferencia=calcularDiferencia(aerolineas,latam);
-					printf("\nLa diferencia de precio es: %f\n$",diferencia);
+					printf("\nLa diferencia de precio es: %f$\n$",diferencia);
 					system("pause");
 					system("cls");
 				break;
@@ -78,7 +78,7 @@ int main(void) {
 				mostrarResultados(precioAerolineas, aerolineasF, "Aerolineas");
 				mostrarResultados(precioLatam,latamF, "Latam");
 				diferencia=calcularDiferencia(aerolineasF,latamF);
-				printf("\nLa diferencia de precio es: %f\n$",diferencia);
+				printf("\nLa diferencia de precio es: %f$\n",diferencia);
 				system("pause");
 				system("cls");
 				break;
@@ -88,3 +88,4 @@ int main(void) {
 		}
 	return 0;
 }
+

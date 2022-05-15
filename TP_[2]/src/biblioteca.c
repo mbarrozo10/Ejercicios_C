@@ -9,17 +9,46 @@
 int ingresarEntero (char texto[], int min, int max){ //Esta funcion te permite ingresar un entero e imprimir un mensaje
 	int check;
 	int numero;
+	char aux[51];
+	int x=0;
 	printf("%s",texto);
 	fflush(stdin);
-	scanf("%d",&numero);
+	scanf("%[^\n]",aux);
+	x=comprobarDigito(aux,texto);
+	while(x==0){
+		printf("\n");
+		fflush(stdin);
+		scanf("%s",aux);
+		x=comprobarDigito(aux,texto);
+	}
+	numero=atoi(aux);
+	check= checkInt(numero, min,max );
+	while (check!=0){
+		printf("Error! El numero ingresado no entra en las opciones permitidas!!\n%s",texto);
+		fflush(stdin);
+		scanf("%d",&numero);
 		check= checkInt(numero, min,max );
-		while (check!=0){
-			printf("Error! El numero ingresado no entra en las opciones permitidas!!\n%s",texto);
-			fflush(stdin);
-			scanf("%d",&numero);
-			check= checkInt(numero, min,max );
-		}
+	}
 	return numero;
+}
+/// @brief Esta funcion comprueba que se ingrese numeros y no caracteres
+///
+/// @param sd
+/// @param texto
+/// @return
+int comprobarDigito (char sd[],char texto[]){
+	int x;
+	for (int i=0;i<strlen(sd);i++){
+		if (isdigit(sd[i])==0){
+			printf("\nNo es un numero %s",texto);
+			x=0;
+			break;
+		}
+		else{
+			x=1;
+		}
+	}
+	return x;
 }
 /// @brief Permite ingresar un string con un limite de caracteres
 ///
@@ -123,3 +152,4 @@ char ingresarCheckCaracter(char texto[], char opcionUno, char opcionDos){
 		}
 	return x;
 }
+

@@ -15,6 +15,8 @@ char ingresarCheckCaracter(char texto[], char opcionUno, char opcionDos);
 int checkString(char text[], int minimo);
 int checkInt (int numero, int minimo, int maximo);
 int checkCaracter(char letra, char opcionUno, char opcionDos);
+int comprobarDigito (char sd[],char texto[]);
+
 
 
 #endif

@@ -275,6 +275,8 @@ int compareByNombre(void* pasajeroUno, void* pasajeroDos){
 	if(pasajeroUno!=NULL&&pasajeroDos!=NULL){
 		Passenger_getNombre((Passenger*)pasajeroUno,nombreUno);
 		Passenger_getNombre((Passenger*)pasajeroDos,nombreDos);
+		strlwr(nombreUno);
+		strlwr(nombreDos);
 		test=strcmp(nombreUno,nombreDos);
 		if(test>0){
 			retorno=1;
@@ -302,6 +304,8 @@ int compareByApellido(void* pasajeroUno, void* pasajeroDos){
 	if(pasajeroUno!=NULL&&pasajeroDos!=NULL){
 		Passenger_getApellido((Passenger*)pasajeroUno,apellidoUno);
 		Passenger_getApellido((Passenger*)pasajeroDos,apellidoDos);
+		strlwr(apellidoUno);
+		strlwr(apellidoDos);
 		test=strcmp(apellidoUno,apellidoDos);
 		if(test>0){
 			retorno=1;
@@ -329,6 +333,8 @@ int compareByTipoPasajero(void* pasajeroUno, void* pasajeroDos){
 	if(pasajeroUno!=NULL&&pasajeroDos!=NULL){
 		Passenger_getTipoPasajero((Passenger*)pasajeroUno,tipoUno);
 		Passenger_getTipoPasajero((Passenger*)pasajeroDos,tipoDos);
+		strlwr(tipoUno);
+		strlwr(tipoDos);
 		test=strcmp(tipoUno,tipoDos);
 		if(test>0){
 			retorno=1;
@@ -356,6 +362,8 @@ int compareByCodigo(void* pasajeroUno, void* pasajeroDos){
 	if(pasajeroUno!=NULL&&pasajeroDos!=NULL){
 		Passenger_getCodigoVuelo((Passenger*)pasajeroUno,codigoUno);
 		Passenger_getCodigoVuelo((Passenger*)pasajeroDos,codigoDos);
+		strlwr(codigoUno);
+		strlwr(codigoDos);
 		test=strcmp(codigoUno,codigoDos);
 		if(test>0){
 			retorno=1;
@@ -383,6 +391,8 @@ int compareByStatus(void* pasajeroUno, void* pasajeroDos){
 	if(pasajeroUno!=NULL&&pasajeroDos!=NULL){
 		Passenger_getStatus((Passenger*)pasajeroUno,statusUno);
 		Passenger_getStatus((Passenger*)pasajeroDos,statusDos);
+		strlwr(statusUno);
+		strlwr(statusDos);
 		test=strcmp(statusUno,statusDos);
 		if(test>0){
 			retorno=1;

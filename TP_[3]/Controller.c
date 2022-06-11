@@ -295,7 +295,7 @@ int controller_removePassenger(LinkedList* pArrayListPassenger)
 		Passenger_getCodigoVuelo(p,codigo);
 		Passenger_getTipoPasajero(p,tipo);
 		Passenger_getStatus(p,status);
-		printf("Vas a borrar a:\n%4d %14s %14s %14.2f %14s %14s %14s\n ",id,p->nombre,p->apellido,p->precio,p->codigoVuelo,p->tipoPasajero,p->status);
+		printf("Vas a borrar a:\n%4d %14s %14s %14.2f %14s %14s %14s\n ",id,nombre,apellido,precio,codigo,tipo,status);
 		eleccion=ingresarCheckCaracter("Estas seguro de que quieres borrar? S/N\n Su opcion: ",'s','n');
 		if (eleccion=='s'){
 			Passenger_delete(p);

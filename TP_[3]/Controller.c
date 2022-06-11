@@ -275,6 +275,12 @@ int controller_removePassenger(LinkedList* pArrayListPassenger)
 	int retorno;
 	int id;
 	int index;
+	char nombre[50];
+	char apellido[50];
+	char tipo[50];
+	float precio;
+	char codigo[20];
+	char status[50];
 	Passenger* p =Passenger_new();
 	int x;
 	char eleccion;
@@ -283,7 +289,13 @@ int controller_removePassenger(LinkedList* pArrayListPassenger)
 		id=ingresarEntero("Ingrese el id que quiera borrar: ",0,idIncremental+1);
 		p=(Passenger*)findPassengerById(id, pArrayListPassenger);
 		index=ll_indexOf(pArrayListPassenger,p);
-		printf("Vas a borrar a:\n%4d %14s %14s %14f %14s %14s %14s\n ",p->id,p->nombre,p->apellido,p->precio,p->codigoVuelo,p->tipoPasajero,p->status);
+		Passenger_getNombre(p,nombre);
+		Passenger_getApellido(p,apellido);
+		Passenger_getPrecio(p,&precio);
+		Passenger_getCodigoVuelo(p,codigo);
+		Passenger_getTipoPasajero(p,tipo);
+		Passenger_getStatus(p,status);
+		printf("Vas a borrar a:\n%4d %14s %14s %14.2f %14s %14s %14s\n ",id,p->nombre,p->apellido,p->precio,p->codigoVuelo,p->tipoPasajero,p->status);
 		eleccion=ingresarCheckCaracter("Estas seguro de que quieres borrar? S/N\n Su opcion: ",'s','n');
 		if (eleccion=='s'){
 			Passenger_delete(p);

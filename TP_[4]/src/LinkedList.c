@@ -165,8 +165,7 @@ void* ll_get(LinkedList* this, int index)
 {
     void* returnAux = NULL;
     Node* pNode;
-    if(this!=NULL){
-    	pNode=(Node*)malloc(sizeof(Node));
+    if(this!=NULL&&index>-1&&index<ll_len(this)){
     	pNode=getNode(this,index);
     	if(pNode!=NULL){
     		returnAux=pNode->pElement;
@@ -185,11 +184,18 @@ void* ll_get(LinkedList* this, int index)
                         ( 0) Si funciono correctamente
  *
  */
+//consultar con german
 int ll_set(LinkedList* this, int index,void* pElement)
 {
     int returnAux = -1;
-        if(this!=NULL&&index<ll_len(this)){
-        	returnAux=addNode(this,index,pElement);
+    Node* pNode;
+        if(this!=NULL&&index<ll_len(this)&&index>-1){
+        	pNode=getNode(this,index);
+        	if(pNode!=NULL){
+        		pNode->pElement=pElement;
+        		returnAux=0;
+        	}
+       // 	returnAux=addNode(this,index,pElement);
         }
     return returnAux;
 }
@@ -219,6 +225,7 @@ int ll_remove(LinkedList* this,int index)
         			  if(this->size==0){
         				  this->pFirstNode=NULL;
         			  }
+        			  free(pNode);
         			  returnAux = 0;
         		  }
         		  else{
@@ -226,6 +233,7 @@ int ll_remove(LinkedList* this,int index)
         			  pNode=getNode(this,index);
         			  aux->pNextNode=pNode->pNextNode;
         			  this->size--;
+        			  free(pNode);
         			  returnAux = 0;
         		  }
 
@@ -332,8 +340,8 @@ int ll_isEmpty(LinkedList* this)
 int ll_push(LinkedList* this, int index, void* pElement)
 {
     int returnAux = -1;
-        if(this!=NULL){
-        		returnAux=addNode(this,index,pElement);
+        if(this!=NULL&&index>=0&&index<=ll_len(this)){
+        	returnAux=addNode(this,index,pElement);
         }
     return returnAux;
 }
@@ -351,28 +359,11 @@ void* ll_pop(LinkedList* this,int index)
 {
     void* returnAux = NULL;
 	Node* pNode;
-	Node* aux;
 	if(this!=NULL&&index>=0&&index<ll_len(this)){
-		 pNode=(Node*)malloc(sizeof(Node));
-		 aux=(Node*)malloc(sizeof(Node));
+		 pNode=getNode(this,index);
 		 if(pNode!=NULL){
-			  if(index==0){
-				  pNode=this->pFirstNode;
-				  this->pFirstNode=pNode->pNextNode;
-				  this->size--;
-				  if(this->size==0){
-					  this->pFirstNode=NULL;
-				  }
-				  returnAux = pNode->pElement;
-			  }
-			  else{
-				  aux=getNode(this,index-1);
-				  pNode=getNode(this,index);
-				  aux->pNextNode=pNode->pNextNode;
-				  returnAux = pNode->pElement;
-				  this->size--;
-			  }
-
+			 returnAux=pNode->pElement;
+			 ll_remove(this,index);
 		 }
 	}
     return returnAux;
@@ -415,9 +406,10 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
     int returnAux = -1;
     void* aux;
     int true;
+    int i;
     if(this!=NULL&&this2!=NULL){
 		returnAux=1;
-    	for(int i=0;i<ll_len(this);i++){
+    	for(i=0;i<ll_len(this);i++){
     		aux=ll_get(this2,i);
     		true=ll_contains(this,aux);
     		if(true!=1){
@@ -493,26 +485,22 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     int i, j;
     void* objetoUno;
     void* objetoDos;
-    void* aux;
     int len=ll_len(this);
-    if(this!=NULL&&len>0){
-
+    if(this!=NULL&&pFunc!=NULL){
     	if(order==0){ //descendente
     		for(i=0;i<len-1;i++){
     			for(j=i+1;j<len;j++){
 
     				objetoUno=ll_get(this, i);
     				objetoDos=ll_get(this, j);
-
-    				if(pFunc(objetoUno,objetoDos)>0){
-    					aux=objetoUno;
+    				if(pFunc(objetoUno,objetoDos)<0){
     					ll_set(this,i,objetoDos);
-    					ll_set(this,j,aux);
+    					ll_set(this,j,objetoUno);
+    					returnAux =0;
     				}
-
     			}
     		}
-    		returnAux =0;
+
     	}
 
     	else if(order==1){ //ascendente
@@ -522,16 +510,14 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 					objetoUno=ll_get(this, i);
 					objetoDos=ll_get(this, j);
 
-					if(pFunc(objetoUno,objetoDos)<0){
-						aux=objetoUno;
+					if(pFunc(objetoUno,objetoDos)>0){
 						ll_set(this,i,objetoDos);
-						ll_set(this,j,aux);
+						ll_set(this,j,objetoUno);
+						returnAux =0;
 					}
 
 				}
     		}
-    		returnAux =0;
-
     	}
     }
 

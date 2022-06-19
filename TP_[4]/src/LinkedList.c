@@ -215,29 +215,24 @@ int ll_remove(LinkedList* this,int index)
         Node* pNode;
         Node* aux;
         if(this!=NULL&&index>=0&&index<ll_len(this)){
-        	 pNode=(Node*)malloc(sizeof(Node));
-        	 aux=(Node*)malloc(sizeof(Node));
-        	 if(pNode!=NULL){
-        		  if(index==0){
-        			  pNode=this->pFirstNode;
-        			  this->pFirstNode=pNode->pNextNode;
-        			  this->size--;
-        			  if(this->size==0){
-        				  this->pFirstNode=NULL;
-        			  }
-        			  free(pNode);
-        			  returnAux = 0;
-        		  }
-        		  else{
-        			  aux=getNode(this,index-1);
-        			  pNode=getNode(this,index);
-        			  aux->pNextNode=pNode->pNextNode;
-        			  this->size--;
-        			  free(pNode);
-        			  returnAux = 0;
-        		  }
-
-        	 }
+			  if(index==0){
+				  pNode=this->pFirstNode;
+				  this->pFirstNode=pNode->pNextNode;
+				  this->size--;
+				  if(this->size==0){
+					  this->pFirstNode=NULL;
+				  }
+				  free(pNode);
+				  returnAux = 0;
+			  }
+			  else{
+				  aux=getNode(this,index-1);
+				  pNode=getNode(this,index);
+				  aux->pNextNode=pNode->pNextNode;
+				  this->size--;
+				  free(pNode);
+				  returnAux = 0;
+			  }
         }
     return returnAux;
 }
@@ -274,8 +269,10 @@ int ll_deleteLinkedList(LinkedList* this)
 {
     int returnAux = -1;
     if(this!=NULL){
-    	free(this);
-    	returnAux=0;
+    	if(ll_clear(this)==0){
+    		free(this);
+    		returnAux=0;
+    	}
     }
     return returnAux;
 }
@@ -294,7 +291,6 @@ int ll_indexOf(LinkedList* this, void* pElement)
     int i;
     Node* pNode;
     if(this!=NULL){
-    	pNode=(Node*)malloc(sizeof(Node));
     	for(i=0;i<ll_len(this);i++){
     		pNode=getNode(this,i);
     		if(pNode->pElement==pElement){
@@ -318,11 +314,9 @@ int ll_isEmpty(LinkedList* this)
 {
     int returnAux = -1;
     if(this!=NULL){
+    	returnAux=0;
     	if(this->size==0){
     		returnAux=1;
-    	}
-    	else{
-    		returnAux=0;
     	}
     }
     return returnAux;
@@ -405,14 +399,12 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
 {
     int returnAux = -1;
     void* aux;
-    int true;
     int i;
     if(this!=NULL&&this2!=NULL){
 		returnAux=1;
     	for(i=0;i<ll_len(this);i++){
     		aux=ll_get(this2,i);
-    		true=ll_contains(this,aux);
-    		if(true!=1){
+    		if(ll_contains(this,aux)!=1){
     			returnAux=0;
     			break;
     		}

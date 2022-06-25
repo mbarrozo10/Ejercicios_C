@@ -37,4 +37,5 @@ int printPassenger(Passenger list[], int len,typePassenger type[]);
 int sortPassengerByCode(Passenger list[], int len, int order,typePassenger type[]);
 void calcularPromedio (Passenger list[],int* pTotal, int* pCanti, float* pPromedio);
 void listar (Passenger list[],typePassenger type[]);
+
 #endif

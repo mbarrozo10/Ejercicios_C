@@ -153,3 +153,38 @@ char ingresarCheckCaracter(char texto[], char opcionUno, char opcionDos){
 	return x;
 }
 
+void ingresarCadenaCheck (char texto[],char imp[], int minimo){ //Esta funcion te permite ingresar un string
+	int numero;
+	int x;
+	printf("%s",imp);
+	fflush(stdin);
+	scanf("%[^\n]",texto);
+	x=comprobarCaracter(texto,imp);
+	while (x==0){
+		printf("%s",imp);
+		fflush(stdin);
+		scanf("%[^\n]",texto);
+		x=comprobarCaracter(texto,imp);
+	}
+	numero = checkString (texto,minimo);
+	while(numero!=0){
+		printf("\nError el nombre ingresado supera el minimo de caracteres!!\n %s",imp);
+		fflush(stdin);
+		scanf("%[^\n]",texto);
+		numero = checkString (texto,minimo);
+	}
+}
+int comprobarCaracter (char sd[],char texto[]){
+	int x;
+	for (int i=0;i<strlen(sd);i++){
+		if (isalpha(sd[i])==0){
+			printf("\nIngresaste un numero %s",texto);
+			x=0;
+			break;
+		}
+		else{
+			x=1;
+		}
+	}
+	return x;
+}

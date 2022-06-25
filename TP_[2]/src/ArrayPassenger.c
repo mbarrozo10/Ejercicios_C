@@ -211,8 +211,8 @@ void ingresarAlta(Passenger list[],int tam){
 	int comprobacion;
 	for (int i=0;i<=tam;i++){
 		if (list[i].isEmpty==TRUE){
-			ingresarCadena(nombre,"\nIngrese el nombre del pasajero: ",51);
-			ingresarCadena(apellido,"\nIngrese el apellido del pasajero: ",51);
+			ingresarCadenaCheck(nombre,"\nIngrese el nombre del pasajero: ",51);
+			ingresarCadenaCheck(apellido,"\nIngrese el apellido del pasajero: ",51);
 			precio=ingresarEntero("\nIngresar el precio del boleto: ",0,30000000);
 			tipo= ingresarEntero("\nIngrese el tipo de pasajero: 1-Economio/ 2-Ejecutiva/ 3-Premium", 0,4);
 			ingresarCadena(codigo,"\nIngrese el codigo del vuelo: ",10);
@@ -248,14 +248,14 @@ void modificarPasajero (Passenger list[], int tam){
 			id=ingresarEntero("\nIngrese el Id del pasajero que busca: ",-1,2001);
 			x=findPassengerById(list,tam,id);
 		}
-		eleccion=ingresarEntero("\nIngrese la opcion que desea cambiar:\n1-Nombre\n2-Apellido\n3-Precio\n4-Tipo de pasajero\n5-Codigo de vuelo\n6-Salir",0,6);
+		eleccion=ingresarEntero("\nIngrese la opcion que desea cambiar:\n1-Nombre\n2-Apellido\n3-Precio\n4-Tipo de pasajero\n5-Codigo de vuelo\n6-Salir",0,7);
 		switch (eleccion){
 			case 1:
-				ingresarCadena(list[x].name,"\nIngrese el nuevo nombre : ",51);
+				ingresarCadenaCheck(list[x].name,"\nIngrese el nuevo nombre : ",51);
 				strcpy(list[x].lastName,nombre);
 				break;
 			case 2:
-				ingresarCadena(list[x].lastName,"\nIngrese el nuevo Apellido : ",51);
+				ingresarCadenaCheck(list[x].lastName,"\nIngrese el nuevo Apellido : ",51);
 				strcpy(list[x].lastName,apellido);
 				break;
 			case 3:

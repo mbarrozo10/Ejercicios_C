@@ -231,7 +231,7 @@ void ingresarAlta(Passenger list[],int tam){
 		if (list[i].isEmpty==TRUE){
 			ingresarCadenaCheck(nombre,"\nIngrese el nombre del pasajero: ",51);
 			ingresarCadenaCheck(apellido,"\nIngrese el apellido del pasajero: ",51);
-			precio=ingresarEntero("\nIngresar el precio del boleto: ",0,30000000);
+			precio=ingresarFlotante("\nIngresar el precio del boleto: ",0,30000000);
 			tipo= ingresarEntero("\nIngrese el tipo de pasajero: 1-Economio/ 2-Ejecutiva/ 3-Premium", 0,4);
 			pedirCodigoAlfa(codigo);
 			status=ingresarEntero("\nIngrese el estado del vuelo: (1-ACTIVO / 2-INACTIVO",0,3);
@@ -278,7 +278,7 @@ void modificarPasajero (Passenger list[], int tam,typePassenger type[]){
 				strcpy(list[x].lastName,apellido);
 				break;
 			case 3:
-				precio=ingresarEntero("\nIngrese el nuevo precio: ",0,200000000);
+				precio=ingresarFlotante("\nIngrese el nuevo precio: ",0,200000000);
 				list[x].price=precio;
 				break;
 			case 4:

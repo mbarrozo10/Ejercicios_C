@@ -18,6 +18,8 @@ int checkInt (int numero, int minimo, int maximo);
 int checkCaracter(char letra, char opcionUno, char opcionDos);
 int comprobarDigito (char sd[],char texto[]);
 int comprobarCaracter (char sd[],char texto[]);
-
+void pedirCodigoAlfa(char asd[]);
+int checkFloat (float numero, float minimo, float maximo);
+float ingresarFlotante(char texto[],float minimo, float maximo);
 
 #endif

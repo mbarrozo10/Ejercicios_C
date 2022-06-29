@@ -161,7 +161,7 @@ int printPassenger(Passenger list[], int len, typePassenger type[] ){
 int sortPassengerByCode(Passenger list[], int len, int order,typePassenger type []){
 	int x=0;
 		Passenger aux;
-		if (order==0){
+		if (order==0&& len>1){
 			for (int i=0;i<=len-1;i++){
 				for(int j=i+1;j<=len;j++){
 					if ((strcmpi(list[i].flycode,list[j].flycode)>0)&&(list[i].isEmpty==FALSE&&list[j].isEmpty==FALSE)){
@@ -172,7 +172,7 @@ int sortPassengerByCode(Passenger list[], int len, int order,typePassenger type 
 				}
 			}
 			x=1;
-		}else{
+		}else if(order==1 && len>1){
 			for (int i=0;i<=len-1;i++){
 						for(int j=i+1;j<=len;j++){
 							if (strcmpi(list[i].flycode,list[j].flycode)<0&&(list[i].isEmpty==FALSE&&list[j].isEmpty==FALSE)){
@@ -183,6 +183,9 @@ int sortPassengerByCode(Passenger list[], int len, int order,typePassenger type 
 						}
 					}
 			x=1;
+		}
+		else{
+			x=-1;
 		}
 		for (int i=0;i<len;i++){
 			for (int j=0;j<4;j++){
@@ -215,7 +218,7 @@ void ingresarAlta(Passenger list[],int tam){
 			ingresarCadenaCheck(apellido,"\nIngrese el apellido del pasajero: ",51);
 			precio=ingresarEntero("\nIngresar el precio del boleto: ",0,30000000);
 			tipo= ingresarEntero("\nIngrese el tipo de pasajero: 1-Economio/ 2-Ejecutiva/ 3-Premium", 0,4);
-			ingresarCadena(codigo,"\nIngrese el codigo del vuelo: ",10);
+			pedirCodigoAlfa(codigo);
 			status=ingresarEntero("\nIngrese el estado del vuelo: (1-ACTIVO / 2-INACTIVO",0,3);
 			comprobacion=addPassenger(list,tam,i,nombre,apellido,precio,tipo,codigo,status);
 			if (comprobacion==-1){
@@ -267,7 +270,7 @@ void modificarPasajero (Passenger list[], int tam){
 				list[x].typePassenger=tipo;
 				break;
 			case 5:
-				ingresarCadena(codigo,"\nIngrese el nuevo codigo de vuelo: ",10);
+				pedirCodigoAlfa(codigo);
 				strcpy(list[x].flycode,codigo);
 				break;
 			case 6:

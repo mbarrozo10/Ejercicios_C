@@ -85,8 +85,6 @@ int checkString(char text[], int minimo){ //Esta funcion comprueba que un string
 
 	return x;
 }
-
-
 /// @brief Compreba que el entero ingresado este en el rango pedido
 ///
 /// @param numero
@@ -189,24 +187,4 @@ int comprobarCaracter (char sd[],char texto[]){
 		}
 	}
 	return x;
-}
-
-void pedirCodigoAlfa(char asd[]){
-	int retorno=1;
-	do{
-		printf("%s","\nIngrese codigo de vuelo");
-		fflush(stdin);
-		scanf("%[^\n]",asd);
-		if(strlen(asd)>0){
-			for(int i=0;i<strlen(asd);i++){
-				if(isdigit(asd[i]) || isalpha(asd[i])){
-					retorno=0;
-				}
-				else{
-					retorno=1;
-					break;
-				}
-			}
-		}
-	}while(retorno==1);
 }

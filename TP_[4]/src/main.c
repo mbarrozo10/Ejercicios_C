@@ -22,36 +22,78 @@
 #include <string.h>
 #include "../testing/inc/main_test.h"
 #include "../inc/LinkedList.h"
+#define PATH "datos_SP.csv"
+#include "biblioteca.h"
+typedef struct{
+	int id;
+	char descripcion[20];
+	float precio;
+	int idTipo;
+}eComputadora;
 
-
+void lectura (LinkedList* list,char* path);
+eComputadora* newPc(char* id, char* desc,char* precio, char* idTipo);
 int main(void)
 {
-//	startTesting(1);  // ll_newLinkedList
-//	startTesting(2);  // ll_len
-//	startTesting(3);  // getNode - test_getNode //NO USAR O PIERDO TP DE NUEVO :D
-//	startTesting(4);  // addNode - test_addNode //NO USAR O PIERTO EL TP DE NUEVO :D
-//	startTesting(5);  // ll_add
-//	startTesting(6);  // ll_get
-//	startTesting(7);  // ll_set
-	startTesting(8);  // ll_remove
-//	startTesting(9);  // ll_clear
-//	startTesting(10); // ll_deleteLinkedList
-//	startTesting(11); // ll_indexOf
-//	startTesting(12); // ll_isEmpty
-//	startTesting(13); // ll_push
-//	startTesting(14); // ll_pop
-//	startTesting(15); // ll_contains
-//	startTesting(16); // ll_containsAll
-//	startTesting(17); // ll_subList
-//	startTesting(18); // ll_clone
-//	startTesting(19); // ll_sort
-
+	setbuf(stdout, NULL);
+	LinkedList* lista;
+	lista= ll_newLinkedList();
+	int eleccion;
+	eleccion=ingresarEntero("1-cargar archivo\n2-ordenar\n3-imprimir\n4-ll_map\n5-guardar llmap", 0, 6);
+	while(eleccion!=6){
+		switch(eleccion){
+		case 1:
+			lectura(lista,PATH);
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		default:
+			break;
+		}
+	}
     return 0;
 }
 
+eComputadora* newPc(char* id, char* desc,char* precio, char* idTipo){
+	eComputadora* aux;
+	aux= (eComputadora*)malloc(sizeof(eComputadora));
+	if (aux!=NULL){
+		aux->id=atoi(id);
+		strcpy(aux->descripcion,desc);
+		aux->precio=atof(precio);
+		aux->idTipo=atoi(idTipo);
+	}
+	else{
+		printf("Error");
+	}
+	return aux;
+}
 
-
-
+void lectura (LinkedList* list, char* path){
+	FILE* archivo;
+	eComputadora* p=NULL;
+	char id[20];
+	char descripcion[20];
+	char precio[20];
+	char idTipo[20];
+	 archivo=fopen(path,"r");
+	 if (archivo!=NULL){
+		 while(!feof(archivo)){
+			 fscanf(archivo,"%[^,],%[^,],%[^,],%[^\n]\n",id,descripcion,precio,idTipo);
+			 p=newPc(id,descripcion,precio,idTipo);
+			 if(p!=NULL){
+				 ll_add(list,p);
+			 }
+		 }
+	fclose(archivo);
+	 }
+}
 
 
 

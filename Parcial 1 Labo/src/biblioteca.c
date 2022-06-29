@@ -85,8 +85,6 @@ int checkString(char text[], int minimo){ //Esta funcion comprueba que un string
 
 	return x;
 }
-
-
 /// @brief Compreba que el entero ingresado este en el rango pedido
 ///
 /// @param numero
@@ -155,58 +153,50 @@ char ingresarCheckCaracter(char texto[], char opcionUno, char opcionDos){
 	return x;
 }
 
-void ingresarCadenaCheck (char texto[],char imp[], int minimo){ //Esta funcion te permite ingresar un string
-	int numero;
-	int x;
-	printf("%s",imp);
+float ingresarFlotante(char texto[],float minimo, float maximo){
+	int check;
+	float numero;
+	char aux[51];
+	int x=0;
+	printf("%s",texto);
 	fflush(stdin);
-	scanf("%[^\n]",texto);
-	x=comprobarCaracter(texto,imp);
-	while (x==0){
-		printf("%s",imp);
+	scanf("%[^\n]",aux);
+	x=comprobarDigito(aux,texto);
+	while(x==0){
+		printf("\n");
 		fflush(stdin);
-		scanf("%[^\n]",texto);
-		x=comprobarCaracter(texto,imp);
+		scanf("%s",aux);
+		x=comprobarDigito(aux,texto);
 	}
-	numero = checkString (texto,minimo);
-	while(numero!=0){
-		printf("\nError el nombre ingresado supera el minimo de caracteres!!\n %s",imp);
+	numero=atoi(aux);
+	check= checkInt(numero, minimo,maximo );
+	while (check!=0){
+		printf("Error! El numero ingresado no entra en las opciones permitidas!!\n%s",texto);
 		fflush(stdin);
-		scanf("%[^\n]",texto);
-		numero = checkString (texto,minimo);
+		scanf("%f",&numero);
+		check= checkInt(numero, minimo,maximo );
 	}
+	return numero;
 }
-int comprobarCaracter (char sd[],char texto[]){
+
+int checkFloat (float numero, float minimo, float maximo){ //Esta funcion comprueba que un float no supere el maximo ni el minimo permitido
 	int x;
-	for (int i=0;i<strlen(sd);i++){
-		if (isalpha(sd[i])==0){
-			printf("\nIngresaste un numero %s",texto);
-			x=0;
-			break;
-		}
-		else{
-			x=1;
-		}
+	if (numero<maximo && numero>minimo){
+		x=0; //0 esta ok
 	}
+	else{
+		x=1; //1 esta mal
+	}
+
 	return x;
 }
 
-void pedirCodigoAlfa(char asd[]){
-	int retorno=1;
-	do{
-		printf("%s","\nIngrese codigo de vuelo");
-		fflush(stdin);
-		scanf("%[^\n]",asd);
-		if(strlen(asd)>0){
-			for(int i=0;i<strlen(asd);i++){
-				if(isdigit(asd[i]) || isalpha(asd[i])){
-					retorno=0;
-				}
-				else{
-					retorno=1;
-					break;
-				}
-			}
-		}
-	}while(retorno==1);
+void informarA(float vec[],float prom){ //Se usa para informar el punto 4.A
+	printf("\nEl total de importes es: %f\nEl promedio es: %f\nY la cantidad de importes que supera el promedio es: %f\n",vec[0],prom,vec[1]);
 }
+
+void informarB (int cont){//Esta funcion se usa para informar el punto 4.B
+	printf("\n La cantidad de discos menor a 1/1/2000 es de: %d",cont);
+}
+
+

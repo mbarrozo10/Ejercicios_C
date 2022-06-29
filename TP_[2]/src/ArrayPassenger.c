@@ -2,6 +2,14 @@
 #define TRUE 1
 #define FALSE 0
 #define TAM 2000
+
+
+static int idIncremental=0;
+static int GetId();
+static int GetId()
+{
+    return idIncremental++;
+}
 /// @brief Inicializa el vector de la estructura
 ///
 /// @param list
@@ -142,10 +150,17 @@ int printPassenger(Passenger list[], int len, typePassenger type[] ){
 	for (int i=0;i<=len;i++){
 		for (int j=0;j<=4;j++){
 			if (list[i].isEmpty==FALSE&& list[i].typePassenger==type[j].id){
-			printf("\n |ID|\tNAME|\tLASTNAME|\tPRICE|\tFLYCODE|\tTYPE PASSENGER|\tSTATUS FLIGHT|"
-					"\n |%d|\t%s|\t%s|\t%f|\t%s|\t%s|\t%d|",list[i].id,list[i].name,list[i].lastName,list[i].price,list[i].flycode,type[j].descripcion,list[i].statusFlight);
-			x=1;
-			break;
+				if(list[i].statusFlight==1){
+					printf("\n |ID|\tNAME|\tLASTNAME|\tPRICE|\tFLYCODE|\tTYPE PASSENGER|\tSTATUS FLIGHT|"
+							"\n |%d|\t%s|\t%s|\t%f|\t%s|\t%s|\t%s|",list[i].id,list[i].name,list[i].lastName,list[i].price,list[i].flycode,type[j].descripcion,"ACTIVO");
+					x=1;
+					break;
+				}
+				else{
+					printf("\n |ID|\tNAME|\tLASTNAME|\tPRICE|\tFLYCODE|\tTYPE PASSENGER|\tSTATUS FLIGHT|"
+							"\n |%d|\t%s|\t%s|\t%f|\t%s|\t%s|\t%s|",list[i].id,list[i].name,list[i].lastName,list[i].price,list[i].flycode,type[j].descripcion,"INACTIVO");
+					x=1;
+				}
 			}
 		}
 	}
@@ -220,7 +235,7 @@ void ingresarAlta(Passenger list[],int tam){
 			tipo= ingresarEntero("\nIngrese el tipo de pasajero: 1-Economio/ 2-Ejecutiva/ 3-Premium", 0,4);
 			pedirCodigoAlfa(codigo);
 			status=ingresarEntero("\nIngrese el estado del vuelo: (1-ACTIVO / 2-INACTIVO",0,3);
-			comprobacion=addPassenger(list,tam,i,nombre,apellido,precio,tipo,codigo,status);
+			comprobacion=addPassenger(list,tam,GetId(),nombre,apellido,precio,tipo,codigo,status);
 			if (comprobacion==-1){
 				printf("\nSe cargo todo correctamente!!\n");
 				eleccion=ingresarCheckCaracter("\nQuiere ingresar otro pasajero? (s/n) ",'s','n');
@@ -235,7 +250,7 @@ void ingresarAlta(Passenger list[],int tam){
 ///
 /// @param list
 /// @param tam
-void modificarPasajero (Passenger list[], int tam){
+void modificarPasajero (Passenger list[], int tam,typePassenger type[]){
 	int x;
 	int id;
 	int eleccion;
@@ -245,6 +260,7 @@ void modificarPasajero (Passenger list[], int tam){
 	int tipo;
 	char codigo[10];
 	if(comprobarAlta(list)){
+		printPassenger(list,TAM,type);
 		id=ingresarEntero("\nIngrese el Id del pasajero que busca: ",-1,2001);
 		x=findPassengerById(list,tam,id);
 		while (x==-1){
@@ -284,10 +300,11 @@ void modificarPasajero (Passenger list[], int tam){
 /// @brief Pide el id del pasajero a borrar y pide una confirmacion
 ///
 /// @param list
-void remover(Passenger list[]){
+void remover(Passenger list[],typePassenger type[]){
 	int id;
 	int baja;
 	if(comprobarAlta(list)){
+		printPassenger(list,TAM,type);
 		id=ingresarEntero("\nIngrese el id que quiere borrar",-1,TAM);
 		baja= removePassenger(list, TAM, id);
 		if (baja==1){

@@ -25,8 +25,8 @@ struct{
 
 void ingresarAlta(Passenger list[],int tam);
 void informarTest(Passenger list[],int indicador);
-void modificarPasajero (Passenger list[], int tam);
-void remover(Passenger list[]);
+void modificarPasajero (Passenger list[], int tam,typePassenger type[]);
+void remover(Passenger list[],typePassenger type[]);
 int comprobarAlta(Passenger list[]);
 int initPassenger(Passenger list[],int len);
 int addPassenger(Passenger list[],int len, int id,char name[],char lastName[],float price, int typePassenger, char flycode[],int statusFlight);

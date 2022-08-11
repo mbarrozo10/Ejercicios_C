@@ -179,7 +179,7 @@ void ingresarCadenaCheck (char texto[],char imp[], int minimo){ //Esta funcion t
 int comprobarCaracter (char sd[],char texto[]){
 	int x;
 	for (int i=0;i<strlen(sd);i++){
-		if (isalpha(sd[i])==0){
+		if (isalpha(sd[i])==0&& sd[i]==' '){
 			printf("\nIngresaste un numero %s",texto);
 			x=0;
 			break;

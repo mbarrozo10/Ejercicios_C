@@ -29,10 +29,10 @@ int main(void) {
 			ingresarAlta(list, TAM);
 			break;
 		case 2:
-			modificarPasajero(list,TAM);
+			modificarPasajero(list,TAM, type);
 			break;
 		case 3:
-			remover(list);
+			remover(list,type);
 			break;
 		case 4:
 			listar(list,type);

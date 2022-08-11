@@ -52,9 +52,6 @@ void lectura (LinkedList* list, FILE* path){
 				printf("Error");
 			 }
 		 }
-
-
-
 }
 
 int printPc(LinkedList* list)

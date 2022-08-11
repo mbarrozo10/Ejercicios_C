@@ -15,7 +15,7 @@ int main(void) {
 	Passenger list[TAM];
 	Passenger carga[5]={{0,"Jose","Argento",40000,"a2392d",1,0,0},
 						{1,"Lupin","Elgato",30000,"a2392d",2,0,1},
-						{2,"Pepe","Argenti",4000,"b29d2",3,0,0},
+						{2,"Pepe","Argento",4000,"b29d2",3,0,0},
 						{3,"Pablo","Ferrete",50000,"eg292d",3,0,1},
 						{4,"Homero J","Simpson",10000,"bsa2042",1,0,1}};
 	typePassenger type[3]={{1,"Economico"},{2,"Ejecutiva"},{3,"Premium"}};
@@ -29,7 +29,11 @@ int main(void) {
 			ingresarAlta(list, TAM);
 			break;
 		case 2:
+<<<<<<< HEAD
 			modificarPasajero(list,TAM, type);
+=======
+			modificarPasajero(list,TAM,type);
+>>>>>>> 9c2f022ffdf78bad6364f2ddf136e2883c8b1f1c
 			break;
 		case 3:
 			remover(list,type);

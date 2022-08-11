@@ -39,7 +39,7 @@ int ingresarEntero (char texto[], int min, int max){ //Esta funcion te permite i
 int comprobarDigito (char sd[],char texto[]){
 	int x;
 	for (int i=0;i<strlen(sd);i++){
-		if (isdigit(sd[i])==0){
+		if (isdigit(sd[i])==0 || sd[i]==' '){
 			printf("\nNo es un numero %s",texto);
 			x=0;
 			break;
@@ -179,8 +179,12 @@ void ingresarCadenaCheck (char texto[],char imp[], int minimo){ //Esta funcion t
 int comprobarCaracter (char sd[],char texto[]){
 	int x;
 	for (int i=0;i<strlen(sd);i++){
+<<<<<<< HEAD
 		if (isalpha(sd[i])==0&& sd[i]==' '){
 			printf("\nIngresaste un numero %s",texto);
+=======
+		if (isalpha(sd[i])==0|| sd[i]==' '){
+>>>>>>> 9c2f022ffdf78bad6364f2ddf136e2883c8b1f1c
 			x=0;
 			break;
 		}
@@ -210,3 +214,45 @@ void pedirCodigoAlfa(char asd[]){
 		}
 	}while(retorno==1);
 }
+<<<<<<< HEAD
+=======
+
+float ingresarFlotante(char texto[],float minimo, float maximo){
+	int check;
+	float numero;
+	char aux[51];
+	int x=0;
+	printf("%s",texto);
+	fflush(stdin);
+	scanf("%[^\n]",aux);
+	x=comprobarDigito(aux,texto);
+	while(x==0){
+		printf("\n");
+		fflush(stdin);
+		scanf("%[^\n]",aux);
+		x=comprobarDigito(aux,texto);
+	}
+	numero=atoi(aux);
+	check= checkInt(numero, minimo,maximo );
+	while (check!=0){
+		printf("Error! El numero ingresado no entra en las opciones permitidas!!\n%s",texto);
+		fflush(stdin);
+		scanf("%f",&numero);
+		check= checkInt(numero, minimo,maximo );
+	}
+	return numero;
+}
+
+int checkFloat (float numero, float minimo, float maximo){ //Esta funcion comprueba que un float no supere el maximo ni el minimo permitido
+	int x;
+	if (numero<maximo && numero>minimo){
+		x=0; //0 esta ok
+	}
+	else{
+		x=1; //1 esta mal
+	}
+
+	return x;
+}
+
+>>>>>>> 9c2f022ffdf78bad6364f2ddf136e2883c8b1f1c
